@@ -1,0 +1,950 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>esGame</name>
+    <events>
+        <variable constant="0" name="Ability" sid="6913133806117316" static="0" type="text">Available</variable>
+        <variable constant="0" name="Storyline" sid="1386080365278502" static="0" type="number">1</variable>
+        <variable constant="0" name="Level" sid="4922282717836761" static="0" type="number">2</variable>
+        <variable constant="0" name="Lives" sid="5194279902343665" static="0" type="number">3</variable>
+        <variable constant="0" name="Score" sid="6321383147797589" static="0" type="number">0</variable>
+        <event-block sid="8201809162647922">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8898937322629025" type="System" />
+            </conditions>
+            <actions>
+                <action id="-24" name="Move to top" sid="7702490201758972" type="Slime" />
+                <action id="-3" name="Set position" sid="6320099356310253" type="TxtHeatCount">
+                    <param id="0" name="X">ViewportRight(215)</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="6372111889765264">
+                    <conditions>
+                        <condition id="5" inverted="1" name="Is tag playing" sid="3001451685451196" type="Audio">
+                            <param id="0" name="Tag">&quot;Level1&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="6184963098936856" type="System">
+                            <param id="0" name="Variable">Level</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Play (by name)" sid="5360207041352889" type="Audio">
+                            <param id="0" name="Folder">1</param>
+                            <param id="1" name="Audio file name">&quot;Level1&quot;</param>
+                            <param id="3" name="Loop">1</param>
+                            <param id="4" name="Volume">0</param>
+                            <param id="2" name="Tag (optional)">&quot;Level1&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2979643440241714">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7724480009570333" type="System">
+                            <param id="0" name="Variable">Level</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-28" name="Set canvas size" sid="9498108834170803" type="System">
+                            <param id="0" name="Width">800</param>
+                            <param id="1" name="Height">500</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="658064511221226">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="2814253172246077" type="System">
+                    <param id="0" name="Interval (seconds)">10.0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="62169969105587" type="System">
+                    <param id="0" name="Variable">Level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="142528283450672" type="Slime">
+                    <param id="0" name="Instance variable">HeatCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5151248957372728">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="8819028081051947" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="1831829292344544" type="TxtLives">
+                    <param id="0" name="Text">&quot;Lives:&quot;&amp;Lives</param>
+                </action>
+                <action id="0" name="Set text" sid="4389493158556217" type="TxtTimer">
+                    <param id="0" name="Text">&quot;Time Left:&quot; &amp; Slime.Timer</param>
+                </action>
+                <action id="0" name="Set text" sid="8948450175144321" type="TxtHeatCount">
+                    <param id="0" name="Text">&quot;HeatCount:&quot;&amp;Slime.HeatCount</param>
+                </action>
+                <action id="0" name="Set text" sid="9001154347593357" type="TxtAbility">
+                    <param id="0" name="Text">&quot;Ability:&quot;&amp;Ability</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="110068845118899">
+                    <conditions>
+                        <condition id="-15" inverted="1" name="Is group active" sid="2532723920246732" type="System">
+                            <param id="0" name="Group name">&quot;Normal Gieu Events&quot;</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="7933242925371131" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="140405684566597">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="6574950986837524" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;On Cooldown&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="7969233810764098" type="System">
+                                    <param id="0" name="Seconds">3.0</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="6707990059559032" type="System">
+                                    <param id="0" name="Group name">&quot;Normal Gieu Events&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="35046956194882" type="System">
+                                    <param id="0" name="Group name">&quot;Avoidable Obstacle Interactions&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="1860254310493623" type="Slime">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="Platform" id="0" name="Set ignoring input" sid="1071889622122959" type="Slime">
+                                    <param id="0" name="Input">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8468568894271635">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="9098454937112894" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="3254478940344421" type="Slime">
+                    <param id="0" name="Instance variable">Timer</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="8848620646283056">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="909424402215434" type="System">
+                            <param id="0" name="Variable">Level</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                        <condition id="-12" name="Repeat" sid="6005904545816612" type="System">
+                            <param id="0" name="Count">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="6929800038870026" type="System">
+                            <param id="0" name="Object to create">Waterdrop</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">random(100,1900)</param>
+                            <param id="3" name="Y">50</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="5377016114820079">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="8021700151949507" type="Slime">
+                    <param id="0" name="Instance variable">Timer</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="295893978243407" type="System">
+                    <param id="0" name="Variable">Lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="290476619863304" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="4711173685774344">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="8935214961385249" type="System">
+                    <param id="0" name="Variable">Lives</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="2196374709042057" type="System">
+                    <param id="0" name="Layout">Level1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3980035201203339">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="6502410464486242" type="System">
+                    <param id="0" name="Interval (seconds)">random(1.5,2.5)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="8366631637863545" type="Spawner">
+                    <param id="0" name="Object">Boulder</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4378043118864804">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="3570661923159518" type="System">
+                    <param id="0" name="Interval (seconds)">random(2,3)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="1554593776842903" type="Spawner2">
+                    <param id="0" name="Object">RockFragments</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9755380846017698">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6496798659868215" type="Slime">
+                    <param id="0" name="Object">Level2_Entrance</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="1805396625323052" type="System">
+                    <param id="0" name="Layout">Level2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="6339881568504247" title="Slime Controls">
+            <sub-events>
+                <event-block sid="8569097000031729">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="4899861297347191" type="Keyboard">
+                            <param id="0" name="Key">37 (Left arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="9887771032874404" type="Slime">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3828894549728494">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="8756308359559616" type="Keyboard">
+                            <param id="0" name="Key">39 (Right arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="1393351323056351" type="Slime">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="1743882958897677" title="Abilities">
+            <sub-events>
+                <event-block sid="3367792887836013">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="6427887904157367" type="Keyboard">
+                            <param id="0" name="Key">86 (V)</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="9003104182627486" type="System">
+                            <param id="0" name="Variable">Storyline</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7055532755584713">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3744738800365577" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Available&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Set group active" sid="6011984625286765" type="System">
+                                    <param id="0" name="Group name">&quot;Normal Gieu Events&quot;</param>
+                                    <param id="1" name="State">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6109942851061016" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;On Cooldown&quot;</param>
+                                </action>
+                                <action behavior="Platform" id="0" name="Set ignoring input" sid="1443694483741073" type="Slime">
+                                    <param id="0" name="Input">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="5907119711696859" type="Slime">
+                                    <param id="0" name="Animation">&quot;Ability&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="2709103974287317" type="System">
+                                    <param id="0" name="Group name">&quot;Avoidable Obstacle Interactions&quot;</param>
+                                    <param id="1" name="State">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="703910128710755" type="System">
+                                    <param id="0" name="Seconds">15</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="2678906977148879" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;Available&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1918844913757794">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="1783145916117427" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="305191709919977" type="Slime">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="2904853102271605" type="System">
+                                    <param id="0" name="Group name">&quot;Avoidable Obstacle Interactions&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action behavior="Platform" id="0" name="Set ignoring input" sid="3689056538028381" type="Slime">
+                                    <param id="0" name="Input">0</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="9311635972599469" type="System">
+                                    <param id="0" name="Group name">&quot;Normal Gieu Events&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7204665656798532">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="8485194053176469" type="Keyboard">
+                            <param id="0" name="Key">86 (V)</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="613647849719722" type="System">
+                            <param id="0" name="Variable">Storyline</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6443636909040603">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="1479993629130782" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Available&quot;</param>
+                                </condition>
+                                <condition id="7" name="Is mirrored" sid="8068865511304855" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="3728637823829381" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;On Cooldown&quot;</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="9425282152361963" type="Slime">
+                                    <param id="0" name="Object">Shuriken</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">1</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="6004350248165952" type="Shuriken">
+                                    <param id="0" name="Angle">180</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="2885394397498502" type="System">
+                                    <param id="0" name="Seconds">15</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6992176189743368" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;Available&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6919820490535459">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="936148119223648" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Available&quot;</param>
+                                </condition>
+                                <condition id="7" inverted="1" name="Is mirrored" sid="3685550515891609" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="9609993642734266" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;On Cooldown&quot;</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="5437882567770453" type="Slime">
+                                    <param id="0" name="Object">Shuriken</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">1</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="6388442743490231" type="System">
+                                    <param id="0" name="Seconds">15</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="147208843436206" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;Available&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="3243563110958739">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="494288640356792" type="System">
+                            <param id="0" name="Variable">Storyline</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="1194536236471118">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="2954858174354071" type="Keyboard">
+                                    <param id="0" name="Key">86 (V)</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="9314118467875801" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Available&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="8768906069934678" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;On Cooldown&quot;</param>
+                                </action>
+                                <action behavior="Platform" id="1" name="Set max speed" sid="8029644359172085" type="Slime">
+                                    <param id="0" name="Max Speed">560</param>
+                                </action>
+                                <action behavior="Platform" id="4" name="Set jump strength" sid="9625920360850292" type="Slime">
+                                    <param id="0" name="Jump strength">1.6*(Slime.Platform.JumpStrength)</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="3380430189141389" type="System">
+                                    <param id="0" name="Seconds">5</param>
+                                </action>
+                                <action behavior="Platform" id="1" name="Set max speed" sid="8975221222202529" type="Slime">
+                                    <param id="0" name="Max Speed">350</param>
+                                </action>
+                                <action behavior="Platform" id="4" name="Set jump strength" sid="1441539589362561" type="Slime">
+                                    <param id="0" name="Jump strength">650</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="5735719507121" type="System">
+                                    <param id="0" name="Seconds">10</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4772873675161237" type="System">
+                                    <param id="0" name="Variable">Ability</param>
+                                    <param id="1" name="Value">&quot;Available&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="7411316624595445" title="Normal Gieu Events">
+            <sub-events>
+                <event-block sid="6915177363234236">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7226699956409848" type="System">
+                            <param id="0" name="Variable">Storyline</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3734558713823728">
+                            <conditions>
+                                <condition behavior="Platform" id="8" name="On moved" sid="4141753259166535" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="67189982905179" type="Slime">
+                                    <param id="0" name="Animation">&quot;Moving&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7699731676644065">
+                            <conditions>
+                                <condition behavior="Platform" id="9" name="On landed" sid="9392200316589786" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="5951122998476432" type="Audio">
+                                    <param id="0" name="Audio file">Gieu sound effect</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="5646507342742475" type="Slime">
+                                    <param id="0" name="Animation">&quot;Landed&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="2293832245267827">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" name="Is moving" sid="3157478913875874" type="Slime" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="4463573165430509" type="System">
+                                            <param id="0" name="Seconds">0.2</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="1297330379748159" type="Slime">
+                                            <param id="0" name="Animation">&quot;Moving&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="2854713572058318">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="5465555960391456" type="Slime" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="7608497695121444" type="System">
+                                            <param id="0" name="Seconds">0.2</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="4233329311261104" type="Slime">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="7952373239159418">
+                            <conditions>
+                                <condition behavior="Platform" id="7" name="On stopped" sid="3643730210469379" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="9772268789531547" type="Slime">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="717998898621244">
+                            <conditions>
+                                <condition behavior="Platform" id="5" name="On jump" sid="3472903670983312" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="2734440879108541" type="Slime">
+                                    <param id="0" name="Animation">&quot;Jump&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="3287027679734351" title="Ninja Gieu Events">
+            <sub-events>
+                <event-block sid="6826161833159934">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="6874663261149586" type="System">
+                            <param id="0" name="Variable">Storyline</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3432902227176442">
+                            <conditions>
+                                <condition behavior="Platform" id="8" name="On moved" sid="225745610982238" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="3337453648600351" type="Slime">
+                                    <param id="0" name="Animation">&quot;NinjaGieuMoving&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4140642524618264">
+                            <conditions>
+                                <condition behavior="Platform" id="9" name="On landed" sid="5415839617381576" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="5536232313822283" type="Slime">
+                                    <param id="0" name="Animation">&quot;NinjaGieuLand&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="2498059774780578" type="Audio">
+                                    <param id="0" name="Audio file">Gieu sound effect</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="1999867577193494">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" name="Is moving" sid="1953029647069549" type="Slime" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="2387228836201478" type="System">
+                                            <param id="0" name="Seconds">0.2</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="4559101923860328" type="Slime">
+                                            <param id="0" name="Animation">&quot;NinjaGieuMoving&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="1852928782009274">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="6594647477125712" type="Slime" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="5904856078830917" type="System">
+                                            <param id="0" name="Seconds">0.2</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="6746052911155224" type="Slime">
+                                            <param id="0" name="Animation">&quot;NinjaGieu&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="1078027728894285">
+                            <conditions>
+                                <condition behavior="Platform" id="7" name="On stopped" sid="7043300328122417" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="3014725086945552" type="Slime">
+                                    <param id="0" name="Animation">&quot;NinjaGieu&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8651053871617708">
+                            <conditions>
+                                <condition behavior="Platform" id="5" name="On jump" sid="376204160656629" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7364031311722301" type="Slime">
+                                    <param id="0" name="Animation">&quot;NinjaGieuJump&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="2974131527054591" title="Adventure Gieu Events">
+            <sub-events>
+                <event-block sid="6826161833159934">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="6874663261149586" type="System">
+                            <param id="0" name="Variable">Storyline</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3432902227176442">
+                            <conditions>
+                                <condition behavior="Platform" id="8" name="On moved" sid="225745610982238" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="3337453648600351" type="Slime">
+                                    <param id="0" name="Animation">&quot;AdventureGieuMoving&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4140642524618264">
+                            <conditions>
+                                <condition behavior="Platform" id="9" name="On landed" sid="5415839617381576" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="5536232313822283" type="Slime">
+                                    <param id="0" name="Animation">&quot;AdventureGieuLand&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="3054003544649015" type="Audio">
+                                    <param id="0" name="Audio file">Gieu sound effect</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="1999867577193494">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" name="Is moving" sid="1953029647069549" type="Slime" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="2387228836201478" type="System">
+                                            <param id="0" name="Seconds">0.2</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="4559101923860328" type="Slime">
+                                            <param id="0" name="Animation">&quot;AdventureGieuMoving&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="1852928782009274">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="6594647477125712" type="Slime" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="5904856078830917" type="System">
+                                            <param id="0" name="Seconds">0.2</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="6746052911155224" type="Slime">
+                                            <param id="0" name="Animation">&quot;AdventureGieu&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="1078027728894285">
+                            <conditions>
+                                <condition behavior="Platform" id="7" name="On stopped" sid="7043300328122417" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="3014725086945552" type="Slime">
+                                    <param id="0" name="Animation">&quot;AdventureGieu&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8651053871617708">
+                            <conditions>
+                                <condition behavior="Platform" id="5" name="On jump" sid="376204160656629" type="Slime" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7364031311722301" type="Slime">
+                                    <param id="0" name="Animation">&quot;AdventureGieuJump&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="4426212017513461" title="Avoidable Obstacle Interactions">
+            <sub-events>
+                <event-block sid="6390191204978994">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6520584126054685" type="Slime">
+                            <param id="0" name="Object">Boulder</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="6997972409317783" type="Audio">
+                            <param id="0" name="Audio file">Gieu sound effect</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="-26" name="Restart layout" sid="4445632198442122" type="System" />
+                        <action id="-11" name="Subtract from" sid="9709809520764668" type="System">
+                            <param id="0" name="Variable">Lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="1547098086126782" type="System">
+                            <param id="0" name="Variable">Ability</param>
+                            <param id="1" name="Value">&quot;Available&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5083535880844982">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="3495757245202645" type="Slime">
+                            <param id="0" name="Object">RockFragments</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="1829842665394428" type="Audio">
+                            <param id="0" name="Audio file">Gieu sound effect</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="-26" name="Restart layout" sid="8218795716810186" type="System" />
+                        <action id="-11" name="Subtract from" sid="8398736898582879" type="System">
+                            <param id="0" name="Variable">Lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7661677128954584" type="System">
+                            <param id="0" name="Variable">Ability</param>
+                            <param id="1" name="Value">&quot;Available&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1774361145586694">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6213432910831611" type="Waterdrop">
+                            <param id="0" name="Object">Slime</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Solid" id="0" name="Set enabled" sid="6625477224650639" type="Waterdrop">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="1829262878604036" title="Miscellaneous Obstacle Interactions">
+            <sub-events>
+                <event-block sid="2862355215362082">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1041379404687449" type="FallEdgeMarker">
+                            <param id="0" name="Object">Slime</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="4069671266099684" type="System">
+                            <param id="0" name="Variable">Lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-26" name="Restart layout" sid="8282444469309654" type="System" />
+                        <action id="-9" name="Set value" sid="9836568170276678" type="System">
+                            <param id="0" name="Variable">Ability</param>
+                            <param id="1" name="Value">&quot;Available&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1354705782145374">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="8379333476487084" type="Boulder">
+                            <param id="0" name="Object">FallEdgeMarker</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="7981607274815567" type="Boulder" />
+                    </actions>
+                </event-block>
+                <event-block sid="4538462184058618">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="5950157351593713" type="Boulder">
+                            <param id="0" name="Object">RockPlatform</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="3603347669535112" type="Boulder" />
+                    </actions>
+                </event-block>
+                <event-block sid="5458871735865071">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="4981816282883235" type="RockFragments">
+                            <param id="0" name="Object">FallEdgeMarker</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="3665853174468358" type="RockFragments" />
+                    </actions>
+                </event-block>
+                <event-block sid="5349439942288234">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6304346562578651" type="RockFragments">
+                            <param id="0" name="Object">RockPlatform</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4125116514890827" type="RockFragments" />
+                    </actions>
+                </event-block>
+                <event-block sid="9627185912306087">
+                    <conditions>
+                        <condition id="-4" name="Is outside layout" sid="3363883470422398" type="Shuriken" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="6629959139978125" type="Shuriken" />
+                    </actions>
+                </event-block>
+                <event-block sid="7560324906594804">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6322946699011241" type="Shuriken">
+                            <param id="0" name="Object">RockPlatform</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="9284890647761046" type="Shuriken" />
+                    </actions>
+                </event-block>
+                <event-block sid="8413941057596374">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6102244022660282" type="Shuriken">
+                            <param id="0" name="Object">Boulder</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="5100644213145149" type="Boulder" />
+                    </actions>
+                </event-block>
+                <event-block sid="1595377110915325">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7286637841037365" type="Shuriken">
+                            <param id="0" name="Object">RockFragments</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="9451775768429809" type="RockFragments" />
+                    </actions>
+                </event-block>
+                <event-block sid="906862230704657">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6010659033810225" type="Waterdrop">
+                            <param id="0" name="Object">FallEdgeMarker</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4910888596786364" type="Waterdrop" />
+                    </actions>
+                </event-block>
+                <event-block sid="9947581406019426">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="3898404933387324" type="Waterdrop">
+                            <param id="0" name="Object">BranchPlatform</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="2346106434367559" type="Waterdrop" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
